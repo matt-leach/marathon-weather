@@ -2,12 +2,15 @@ import urllib.request
 import urllib.parse
 import json
 import secrets
+import os
 
 # Base URL for the Visual Crossing API
 BASE_URL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
 
 # API key for the Visual Crossing API
 API_KEY = secrets.VISUAL_CROSSING_API_KEY
+
+MARATHONS_JSON_PATH = "marathons.json"
 
 def get_weather_data(location, date):
     """
@@ -41,14 +44,66 @@ def get_weather_data(location, date):
         return json.loads(response.read().decode('utf-8'))
 
 
+def load_marathons():
+    """
+    Load marathon data from JSON file.
+    
+    Args:
+        json_path: Path to the marathons JSON file
+    
+    Returns:
+        list: List of marathon dictionaries
+    """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    json_file = os.path.join(script_dir, MARATHONS_JSON_PATH)
+    
+    with open(json_file, 'r') as f:
+        return json.load(f)
+
+
+def fetch_all_marathon_weather(marathons):
+    """
+    Fetch weather data for all marathon events.
+    
+    Args:
+        marathons: List of marathon dictionaries with name, location, and events
+    
+    Returns:
+        list: List of dictionaries containing marathon info along with weather data
+    """    
+    results = []
+    
+    for marathon in marathons:
+        marathon_name = marathon["name"]
+        location = marathon["location"]
+        
+        print(f"Processing {marathon_name}...")
+        
+        for event in marathon["events"]:
+            date = event["date"]
+            
+            print(f"  Fetching weather for {date}...")
+            weather_data = get_weather_data(location, date)
+            
+            results.append({
+                "marathon": marathon_name,
+                "location": location,
+                "date": date,
+                "weather": weather_data
+            })
+            print(f"  ✓ Successfully fetched weather for {date}")
+    
+    return results
+
+
 def main():
-    """Main function to fetch and display weather data."""
-    try:
-        weather_data = get_weather_data("London, UK", "2019-04-19")
-        print("Weather data retrieved successfully!")
-        print(json.dumps(weather_data, indent=2))
-    except Exception as e:
-        print(f"Error fetching weather data: {e}")
+    """Main function to fetch weather data for all marathons."""
+    marathons = load_marathons()
+    
+    results = fetch_all_marathon_weather(marathons)
+    
+    print(f"\n✓ Completed fetching weather data for {len(results)} events")
+    print(json.dumps(results, indent=2))
 
 
 if __name__ == "__main__":
