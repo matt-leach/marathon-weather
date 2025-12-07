@@ -83,12 +83,33 @@ def load_marathons():
         return json.load(f)
 
 
-def fetch_all_marathon_weather(marathons):
+def load_existing_weather() -> dict[tuple[str, str], dict]:
     """
-    Fetch weather data for all marathon history.
+    Load existing weather data from weather.json file.
+    
+    Returns:
+        dict: Dictionary mapping (marathon, date) to weather entry
+    """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    weather_file = os.path.join(script_dir, WEATHER_JSON_PATH)
+    
+    if not os.path.exists(weather_file):
+        return {}
+    
+    with open(weather_file, 'r') as f:
+        existing_data = json.load(f)
+    
+    # Index by (marathon, date) for quick lookup
+    return {(entry["marathon"], entry["date"]): entry for entry in existing_data}
+
+
+def fetch_all_marathon_weather(marathons, existing_weather: dict[tuple[str, str], dict]):
+    """
+    Fetch weather data for all marathon history, skipping dates already in existing_weather.
     
     Args:
         marathons: List of marathon dictionaries with name, location, and history
+        existing_weather: Dict mapping (marathon, date) to existing weather entries
     
     Returns:
         list: List of dictionaries containing marathon info along with weather data
@@ -103,6 +124,12 @@ def fetch_all_marathon_weather(marathons):
         
         for event in marathon["history"]:
             date = event["date"]
+            
+            # Use existing data if available
+            if (marathon_name, date) in existing_weather:
+                print(f"  ⏭ Skipping {date} (already exists)")
+                results.append(existing_weather[(marathon_name, date)])
+                continue
             
             print(f"  Fetching weather for {date}...")
             weather_data = get_weather_data(location, date)
@@ -125,9 +152,12 @@ def main():
     """Main function to fetch weather data for all marathons."""
     marathons = load_marathons()
     
-    results = fetch_all_marathon_weather(marathons)
+    # Load existing weather data to avoid duplicate API calls
+    existing_weather = load_existing_weather()
     
-    # Write results to weather.json
+    results = fetch_all_marathon_weather(marathons, existing_weather)
+    
+    # Write results to weather.json - note this always overwrites the file
     script_dir = os.path.dirname(os.path.abspath(__file__))
     output_file = os.path.join(script_dir, WEATHER_JSON_PATH)
     
