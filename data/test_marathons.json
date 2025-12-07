@@ -1,0 +1,26 @@
+[
+    {
+        "name": "London Marathon", 
+        "history": [
+            {
+                "year": 2025,
+                "date": "2025-04-27"
+            },
+            {
+                "year": 2024,
+                "date": "2024-04-21"
+            }
+        ],
+        "location": "London, UK"
+    }, 
+    {
+        "name": "Berlin Marathon", 
+        "history": [
+            {
+                "year": 2025,
+                "date": "2025-09-21"
+            }
+        ],
+        "location": "Berlin, Germany"
+    }
+]

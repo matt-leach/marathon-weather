@@ -1,0 +1,536 @@
+[
+  {
+    "race": "London Marathon",
+    "location": "London, UK",
+    "history": [
+      {
+        "year": 2025,
+        "date": "2025-04-27",
+        "weather": [
+          {
+            "datetime": "00:00:00",
+            "temp": 49.7,
+            "dew": 46.1,
+            "windspeed": 1.9,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "01:00:00",
+            "temp": 48.8,
+            "dew": 45.8,
+            "windspeed": 1.5,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "02:00:00",
+            "temp": 47.0,
+            "dew": 45.2,
+            "windspeed": 1.8,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "03:00:00",
+            "temp": 47.0,
+            "dew": 46.1,
+            "windspeed": 1.2,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "04:00:00",
+            "temp": 47.0,
+            "dew": 46.1,
+            "windspeed": 2.6,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "05:00:00",
+            "temp": 45.8,
+            "dew": 44.7,
+            "windspeed": 1.7,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "06:00:00",
+            "temp": 44.7,
+            "dew": 43.8,
+            "windspeed": 2.8,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "07:00:00",
+            "temp": 46.1,
+            "dew": 45.8,
+            "windspeed": 2.0,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "08:00:00",
+            "temp": 48.8,
+            "dew": 47.9,
+            "windspeed": 1.1,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "09:00:00",
+            "temp": 53.9,
+            "dew": 48.8,
+            "windspeed": 3.0,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "10:00:00",
+            "temp": 59.6,
+            "dew": 47.6,
+            "windspeed": 2.4,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "11:00:00",
+            "temp": 62.9,
+            "dew": 44.7,
+            "windspeed": 4.2,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "12:00:00",
+            "temp": 65.9,
+            "dew": 46.1,
+            "windspeed": 3.4,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "13:00:00",
+            "temp": 68.3,
+            "dew": 45.2,
+            "windspeed": 4.3,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "14:00:00",
+            "temp": 70.8,
+            "dew": 47.6,
+            "windspeed": 3.8,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "15:00:00",
+            "temp": 71.0,
+            "dew": 43.4,
+            "windspeed": 5.8,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "16:00:00",
+            "temp": 69.9,
+            "dew": 42.2,
+            "windspeed": 4.9,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "17:00:00",
+            "temp": 69.2,
+            "dew": 43.8,
+            "windspeed": 5.0,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "18:00:00",
+            "temp": 70.4,
+            "dew": 44.9,
+            "windspeed": 6.4,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "19:00:00",
+            "temp": 65.6,
+            "dew": 46.1,
+            "windspeed": 5.9,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "20:00:00",
+            "temp": 63.2,
+            "dew": 47.0,
+            "windspeed": 6.5,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "21:00:00",
+            "temp": 61.1,
+            "dew": 47.0,
+            "windspeed": 7.1,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "22:00:00",
+            "temp": 59.6,
+            "dew": 47.4,
+            "windspeed": 6.5,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "23:00:00",
+            "temp": 56.9,
+            "dew": 47.6,
+            "windspeed": 3.7,
+            "conditions": "Clear"
+          }
+        ]
+      },
+      {
+        "year": 2024,
+        "date": "2024-04-21",
+        "weather": [
+          {
+            "datetime": "00:00:00",
+            "temp": 44.9,
+            "dew": 35.0,
+            "windspeed": 4.5,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "01:00:00",
+            "temp": 45.2,
+            "dew": 35.0,
+            "windspeed": 5.0,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "02:00:00",
+            "temp": 45.2,
+            "dew": 34.1,
+            "windspeed": 4.3,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "03:00:00",
+            "temp": 44.9,
+            "dew": 34.4,
+            "windspeed": 8.1,
+            "conditions": "Overcast"
+          },
+          {
+            "datetime": "04:00:00",
+            "temp": 44.7,
+            "dew": 34.8,
+            "windspeed": 9.6,
+            "conditions": "Overcast"
+          },
+          {
+            "datetime": "05:00:00",
+            "temp": 43.1,
+            "dew": 34.4,
+            "windspeed": 9.1,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "06:00:00",
+            "temp": 42.2,
+            "dew": 34.8,
+            "windspeed": 7.0,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "07:00:00",
+            "temp": 42.0,
+            "dew": 34.8,
+            "windspeed": 9.2,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "08:00:00",
+            "temp": 43.1,
+            "dew": 34.4,
+            "windspeed": 10.7,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "09:00:00",
+            "temp": 45.8,
+            "dew": 34.8,
+            "windspeed": 13.6,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "10:00:00",
+            "temp": 47.0,
+            "dew": 32.3,
+            "windspeed": 14.7,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "11:00:00",
+            "temp": 48.5,
+            "dew": 32.1,
+            "windspeed": 13.1,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "12:00:00",
+            "temp": 51.0,
+            "dew": 35.0,
+            "windspeed": 14.1,
+            "conditions": "Overcast"
+          },
+          {
+            "datetime": "13:00:00",
+            "temp": 50.6,
+            "dew": 33.5,
+            "windspeed": 11.7,
+            "conditions": "Overcast"
+          },
+          {
+            "datetime": "14:00:00",
+            "temp": 51.2,
+            "dew": 33.9,
+            "windspeed": 11.7,
+            "conditions": "Overcast"
+          },
+          {
+            "datetime": "15:00:00",
+            "temp": 53.0,
+            "dew": 33.5,
+            "windspeed": 11.7,
+            "conditions": "Overcast"
+          },
+          {
+            "datetime": "16:00:00",
+            "temp": 52.1,
+            "dew": 32.3,
+            "windspeed": 12.3,
+            "conditions": "Overcast"
+          },
+          {
+            "datetime": "17:00:00",
+            "temp": 53.9,
+            "dew": 35.0,
+            "windspeed": 12.1,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "18:00:00",
+            "temp": 52.1,
+            "dew": 32.6,
+            "windspeed": 12.7,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "19:00:00",
+            "temp": 51.2,
+            "dew": 33.0,
+            "windspeed": 12.1,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "20:00:00",
+            "temp": 49.4,
+            "dew": 32.6,
+            "windspeed": 10.9,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "21:00:00",
+            "temp": 47.6,
+            "dew": 34.8,
+            "windspeed": 8.5,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "22:00:00",
+            "temp": 46.5,
+            "dew": 35.0,
+            "windspeed": 6.7,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "23:00:00",
+            "temp": 45.6,
+            "dew": 35.0,
+            "windspeed": 6.5,
+            "conditions": "Clear"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "race": "Berlin Marathon",
+    "location": "Berlin, Germany",
+    "history": [
+      {
+        "year": 2025,
+        "date": "2025-09-21",
+        "weather": [
+          {
+            "datetime": "00:00:00",
+            "temp": 65.1,
+            "dew": 57.7,
+            "windspeed": 4.1,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "01:00:00",
+            "temp": 64.4,
+            "dew": 57.1,
+            "windspeed": 4.4,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "02:00:00",
+            "temp": 62.2,
+            "dew": 56.6,
+            "windspeed": 4.6,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "03:00:00",
+            "temp": 61.9,
+            "dew": 57.1,
+            "windspeed": 3.4,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "04:00:00",
+            "temp": 63.6,
+            "dew": 57.3,
+            "windspeed": 4.1,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "05:00:00",
+            "temp": 62.6,
+            "dew": 57.3,
+            "windspeed": 4.5,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "06:00:00",
+            "temp": 60.3,
+            "dew": 56.6,
+            "windspeed": 3.8,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "07:00:00",
+            "temp": 60.5,
+            "dew": 57.0,
+            "windspeed": 4.9,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "08:00:00",
+            "temp": 63.1,
+            "dew": 58.0,
+            "windspeed": 5.2,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "09:00:00",
+            "temp": 66.6,
+            "dew": 59.2,
+            "windspeed": 4.8,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "10:00:00",
+            "temp": 71.8,
+            "dew": 60.4,
+            "windspeed": 6.5,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "11:00:00",
+            "temp": 75.5,
+            "dew": 61.2,
+            "windspeed": 7.7,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "12:00:00",
+            "temp": 78.6,
+            "dew": 61.3,
+            "windspeed": 9.6,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "13:00:00",
+            "temp": 79.5,
+            "dew": 60.9,
+            "windspeed": 14.2,
+            "conditions": "Clear"
+          },
+          {
+            "datetime": "14:00:00",
+            "temp": 78.5,
+            "dew": 61.0,
+            "windspeed": 12.2,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "15:00:00",
+            "temp": 75.8,
+            "dew": 61.5,
+            "windspeed": 10.7,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "16:00:00",
+            "temp": 75.4,
+            "dew": 61.7,
+            "windspeed": 12.2,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "17:00:00",
+            "temp": 73.5,
+            "dew": 61.6,
+            "windspeed": 15.2,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "18:00:00",
+            "temp": 69.8,
+            "dew": 56.1,
+            "windspeed": 15.9,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "19:00:00",
+            "temp": 67.6,
+            "dew": 51.1,
+            "windspeed": 13.7,
+            "conditions": "Partially cloudy"
+          },
+          {
+            "datetime": "20:00:00",
+            "temp": 65.7,
+            "dew": 48.9,
+            "windspeed": 13.6,
+            "conditions": "Overcast"
+          },
+          {
+            "datetime": "21:00:00",
+            "temp": 63.0,
+            "dew": 50.4,
+            "windspeed": 14.0,
+            "conditions": "Rain, Overcast"
+          },
+          {
+            "datetime": "22:00:00",
+            "temp": 62.2,
+            "dew": 50.6,
+            "windspeed": 13.9,
+            "conditions": "Overcast"
+          },
+          {
+            "datetime": "23:00:00",
+            "temp": 60.1,
+            "dew": 50.9,
+            "windspeed": 13.8,
+            "conditions": "Overcast"
+          }
+        ]
+      }
+    ]
+  }
+]

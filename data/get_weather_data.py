@@ -83,12 +83,12 @@ def load_marathons():
         return json.load(f)
 
 
-def load_existing_weather() -> dict[tuple[str, str], dict]:
+def load_existing_weather() -> dict[tuple[str, str], list]:
     """
     Load existing weather data from weather.json file.
     
     Returns:
-        dict: Dictionary mapping (marathon, date) to weather entry
+        dict: Dictionary mapping (race, date) to weather list
     """
     script_dir = os.path.dirname(os.path.abspath(__file__))
     weather_file = os.path.join(script_dir, WEATHER_JSON_PATH)
@@ -99,20 +99,24 @@ def load_existing_weather() -> dict[tuple[str, str], dict]:
     with open(weather_file, 'r') as f:
         existing_data = json.load(f)
     
-    # Index by (marathon, date) for quick lookup
-    return {(entry["marathon"], entry["date"]): entry for entry in existing_data}
+    # Index by (race, date) for quick lookup
+    result = {}
+    for marathon in existing_data:
+        for event in marathon["history"]:
+            result[(marathon["race"], event["date"])] = event["weather"]
+    return result
 
 
-def fetch_all_marathon_weather(marathons, existing_weather: dict[tuple[str, str], dict]):
+def fetch_all_marathon_weather(marathons, existing_weather: dict[tuple[str, str], list]):
     """
     Fetch weather data for all marathon history, skipping dates already in existing_weather.
     
     Args:
-        marathons: List of marathon dictionaries with name, location, and history
-        existing_weather: Dict mapping (marathon, date) to existing weather entries
+        marathons: List of marathon dictionaries with race, location, timezone, and history
+        existing_weather: Dict mapping (race, date) to existing weather list
     
     Returns:
-        list: List of dictionaries containing marathon info along with weather data
+        list: List of race dictionaries with nested history including weather data
     """    
     results = []
     
@@ -122,29 +126,34 @@ def fetch_all_marathon_weather(marathons, existing_weather: dict[tuple[str, str]
         
         print(f"Processing {marathon_name}...")
         
+        marathon_output_data = {
+            "race": marathon_name,
+            "location": location,
+            "history": []
+        }
+        
         for event in marathon["history"]:
             date = event["date"]
+            
+            # Build the event entry with all fields from input
+            event_result = {
+                "year": event["year"],
+                "date": date,
+           }
             
             # Use existing data if available
             if (marathon_name, date) in existing_weather:
                 print(f"  ⏭ Skipping {date} (already exists)")
-                results.append(existing_weather[(marathon_name, date)])
-                continue
+                event_result["weather"] = existing_weather[(marathon_name, date)]
+            else:
+                print(f"  Fetching weather for {date}...")
+                weather_data = get_weather_data(location, date)
+                event_result["weather"] = extract_weather_fields(weather_data)
+                print(f"  ✓ Successfully fetched weather for {date}")
             
-            print(f"  Fetching weather for {date}...")
-            weather_data = get_weather_data(location, date)
-            
-            # Extract only the specified fields
-            extracted_weather = extract_weather_fields(weather_data)
-            
-            results.append({
-                "marathon": marathon_name,
-                "location": location,
-                "date": date,
-                "year": event["year"],
-                "weather": extracted_weather
-            })
-            print(f"  ✓ Successfully fetched weather for {date}")
+            marathon_output_data["history"].append(event_result)
+        
+        results.append(marathon_output_data)
     
     return results
 
