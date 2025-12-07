@@ -11,6 +11,7 @@ BASE_URL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/se
 API_KEY = secrets.VISUAL_CROSSING_API_KEY
 
 MARATHONS_JSON_PATH = "marathons.json"
+WEATHER_JSON_PATH = "weather.json"
 
 def get_weather_data(location, date):
     """
@@ -126,8 +127,15 @@ def main():
     
     results = fetch_all_marathon_weather(marathons)
     
+    # Write results to weather.json
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    output_file = os.path.join(script_dir, WEATHER_JSON_PATH)
+    
+    with open(output_file, 'w') as f:
+        json.dump(results, f, indent=2)
+    
     print(f"\n✓ Completed fetching weather data for {len(results)} events")
-    print(json.dumps(results, indent=2))
+    print(f"✓ Results saved to {output_file}")
 
 
 if __name__ == "__main__":
