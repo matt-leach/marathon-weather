@@ -6,6 +6,9 @@
       {
         "year": 2025,
         "date": "2025-04-27",
+        "startTimeMass": "10:00:00",
+        "startTimeEliteMen": "10:00:00",
+        "startTimeEliteWomen": "09:25:00",
         "weather": [
           {
             "datetime": "00:00:00",
@@ -180,6 +183,9 @@
       {
         "year": 2024,
         "date": "2024-04-21",
+        "startTimeMass": "10:00:00",
+        "startTimeEliteMen": "10:00:00",
+        "startTimeEliteWomen": "09:25:00",
         "weather": [
           {
             "datetime": "00:00:00",
@@ -360,6 +366,9 @@
       {
         "year": 2025,
         "date": "2025-09-21",
+        "startTimeMass": "09:15:00",
+        "startTimeEliteMen": "09:15:00",
+        "startTimeEliteWomen": "09:15:00",
         "weather": [
           {
             "datetime": "00:00:00",

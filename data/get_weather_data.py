@@ -139,7 +139,10 @@ def fetch_all_marathon_weather(marathons, existing_weather: dict[tuple[str, str]
             event_result = {
                 "year": event["year"],
                 "date": date,
-           }
+                "startTimeMass": event["startTimeMass"],
+                "startTimeEliteMen": event["startTimeEliteMen"],
+                "startTimeEliteWomen": event["startTimeEliteWomen"]
+            }
             
             # Use existing data if available
             if (marathon_name, date) in existing_weather:
