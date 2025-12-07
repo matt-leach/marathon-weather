@@ -1,7 +1,7 @@
 [
     {
         "name": "London Marathon", 
-        "events": [
+        "history": [
             {
                 "date": "2025-04-27"
             },
@@ -19,7 +19,7 @@
     }, 
     {
         "name": "Berlin Marathon", 
-        "events": [
+        "history": [
             {
                 "date": "2025-09-21"
             },
@@ -37,7 +37,7 @@
     }, 
     {
         "name": "New York Marathon", 
-        "events": [
+        "history": [
             {
                 "date": "2025-11-02"
             },

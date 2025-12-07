@@ -63,10 +63,10 @@ def load_marathons():
 
 def fetch_all_marathon_weather(marathons):
     """
-    Fetch weather data for all marathon events.
+    Fetch weather data for all marathon history.
     
     Args:
-        marathons: List of marathon dictionaries with name, location, and events
+        marathons: List of marathon dictionaries with name, location, and history
     
     Returns:
         list: List of dictionaries containing marathon info along with weather data
@@ -79,7 +79,7 @@ def fetch_all_marathon_weather(marathons):
         
         print(f"Processing {marathon_name}...")
         
-        for event in marathon["events"]:
+        for event in marathon["history"]:
             date = event["date"]
             
             print(f"  Fetching weather for {date}...")
