@@ -134,6 +134,11 @@ def fetch_all_marathon_weather(marathons, existing_weather: dict[tuple[str, str]
         
         for event in marathon["history"]:
             date = event["date"]
+
+            if date is None:
+                # The event was cancelled
+                print(f"  ⏭ Skipping {event["year"]} (cancelled)")
+                continue
             
             # Build the event entry with all fields from input
             event_result = {
