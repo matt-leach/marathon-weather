@@ -44,6 +44,27 @@ def get_weather_data(location, date):
         return json.loads(response.read().decode('utf-8'))
 
 
+def extract_weather_fields(weather_data):
+    """
+    Extract only specific fields from the weather API response.
+    """
+    extracted_data = []
+    
+    # The API returns data in a "days" array
+    assert len(weather_data["days"]) == 1, "Expected 1 day of data"
+    day_data = weather_data["days"][0]
+    
+    for hour in day_data["hours"]:
+        extracted_data.append({
+            "datetime": hour.get("datetime", ""),
+            "temp": hour.get("temp"),
+            "dew": hour.get("dew"),
+            "windspeed": hour.get("windspeed"),
+            "conditions": hour.get("conditions", "")
+        })
+    return extracted_data
+
+
 def load_marathons():
     """
     Load marathon data from JSON file.
@@ -85,11 +106,14 @@ def fetch_all_marathon_weather(marathons):
             print(f"  Fetching weather for {date}...")
             weather_data = get_weather_data(location, date)
             
+            # Extract only the specified fields
+            extracted_weather = extract_weather_fields(weather_data)
+            
             results.append({
                 "marathon": marathon_name,
                 "location": location,
                 "date": date,
-                "weather": weather_data
+                "weather": extracted_weather
             })
             print(f"  ✓ Successfully fetched weather for {date}")
     
