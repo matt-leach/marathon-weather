@@ -10,8 +10,8 @@ BASE_URL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/se
 # API key for the Visual Crossing API
 API_KEY = secrets.VISUAL_CROSSING_API_KEY
 
-MARATHONS_JSON_PATH = "marathons.json"
-WEATHER_JSON_PATH = "weather.json"
+MARATHONS_JSON_PATH = "test_marathons.json"
+WEATHER_JSON_PATH = "test_weather.json"
 
 def get_weather_data(location, date):
     """
@@ -141,6 +141,7 @@ def fetch_all_marathon_weather(marathons, existing_weather: dict[tuple[str, str]
                 "marathon": marathon_name,
                 "location": location,
                 "date": date,
+                "year": event["year"],
                 "weather": extracted_weather
             })
             print(f"  ✓ Successfully fetched weather for {date}")
