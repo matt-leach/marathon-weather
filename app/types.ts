@@ -1,7 +1,7 @@
 export interface WeatherPoint {
   datetime: string; // "HH:mm:ss"
-  temp: number; // Celsius
-  dew: number;
+  temp: number; // Fahrenheit
+  dew: number; // Fahrenheit
   windspeed: number;
   conditions: string;
 }
