@@ -120,7 +120,7 @@ const App: React.FC = () => {
             Race Day Conditions
           </h2>
           <p className="mt-2 text-slate-500 text-sm max-w-lg mx-auto">
-             Analyze historical trends based on your projected pace.
+             Analyze historical weather trends based on your projected marathon time.
           </p>
         </div>
 
