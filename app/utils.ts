@@ -6,7 +6,6 @@ import { TimeMode, Metric, Unit } from './App';
  * e.g., "09:30" -> 9.5
  */
 export const getDecimalHour = (timeStr: string): number => {
-  if (!timeStr) return 9; // Fallback default
   const [h, m] = timeStr.split(':').map(Number);
   return h + m / 60;
 };
