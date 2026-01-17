@@ -2,6 +2,13 @@ import React, { useState, useMemo, useId } from 'react';
 import { HistoryYear } from '../types';
 import { TimeMode, Metric, Unit } from '../App';
 import { Sun, Cloud, CloudRain, CloudSnow, CloudSun } from 'lucide-react';
+import {
+  getDecimalHour,
+  getStartHourForYear,
+  calculateMetricValue,
+  getRawValuesAtHour,
+  formatDuration,
+} from '../utils';
 
 interface YearlyBubbleChartProps {
   history: HistoryYear[];
@@ -45,68 +52,8 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
     return padding.top + (1 - normalized) * (height - padding.top - padding.bottom);
   };
 
-  const getDecimalHour = (timeStr: string) => {
-    if (!timeStr) return 9;
-    const [h, m] = timeStr.split(':').map(Number);
-    return h + m / 60;
-  };
-
-  const getStartHourForYear = (year: HistoryYear, mode: TimeMode, offsetMins: number) => {
-    let timeStr = year.startTimeMass;
-    let offsetHours = 0;
-    if (mode === 'eliteMen') {
-        timeStr = year.startTimeEliteMen || year.startTimeElite || year.startTimeMass;
-    } else if (mode === 'eliteWomen') {
-        timeStr = year.startTimeEliteWomen || year.startTimeElite || year.startTimeMass;
-    } else {
-        // Mass start logic
-        timeStr = year.startTimeMass;
-        offsetHours = offsetMins / 60;
-    }
-    return getDecimalHour(timeStr) + offsetHours;
-  };
-
-  const calculateMetric = (temp: number, dew: number) => {
-    let val = metric === 'sum' ? (temp + dew) : temp;
-    if (unit === 'C') {
-        const offset = metric === 'sum' ? 64 : 32;
-        val = (val - offset) * 5 / 9;
-    }
-    return val;
-  };
-
-  const interpolate = (val1: number, val2: number, t1: number, t2: number, t: number) => {
-    if (t2 === t1) return val1;
-    const fraction = (t - t1) / (t2 - t1);
-    return val1 + fraction * (val2 - val1);
-  };
-
-  const getRawValuesAtHour = (yearData: HistoryYear, targetHour: number) => {
-    const allPoints = yearData.weather.map(p => ({
-        ...p,
-        t: getDecimalHour(p.datetime)
-    })).sort((a, b) => a.t - b.t);
-
-    const indexAfter = allPoints.findIndex(p => p.t >= targetHour);
-    
-    if (indexAfter === -1) {
-        const last = allPoints[allPoints.length - 1];
-        return { temp: last ? last.temp : 0, dew: last ? last.dew : 0 };
-    } 
-    
-    if (indexAfter === 0) {
-        const first = allPoints[0];
-        return { temp: first.temp, dew: first.dew };
-    }
-
-    const pAfter = allPoints[indexAfter];
-    const pBefore = allPoints[indexAfter - 1];
-
-    return {
-        temp: interpolate(pBefore.temp, pAfter.temp, pBefore.t, pAfter.t, targetHour),
-        dew: interpolate(pBefore.dew, pAfter.dew, pBefore.t, pAfter.t, targetHour)
-    };
-  };
+  const calculateMetric = (temp: number, dew: number) =>
+    calculateMetricValue(temp, dew, metric, unit);
 
   const getBubbleColor = (sumF: number) => {
      // Coloring purely based on Temp + Dew (Sum) in Fahrenheit
@@ -251,15 +198,6 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
 
   const tooltipData = getTooltipData();
   const formatVal = (v: number) => v.toFixed(1);
-
-  // Helper to format duration for tooltip display (e.g. 2:36)
-  const formatDurationStr = (hrs: number) => {
-      const h = Math.floor(hrs);
-      const m = Math.round((hrs - h) * 60);
-      const mStr = m === 60 ? '00' : m.toString().padStart(2, '0');
-      const hFinal = m === 60 ? h + 1 : h;
-      return `${hFinal}:${mStr}`;
-  };
 
   // Determine alignment of tooltip based on year position to avoid covering the column
   const tooltipAlignment = useMemo(() => {
@@ -466,7 +404,7 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
                   </div>
                   
                   <div>
-                      <div className="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Finish (+{formatDurationStr(duration)}h)</div>
+                      <div className="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Finish (+{formatDuration(duration)}h)</div>
                       <div className="flex justify-between text-slate-700">
                           <span>Temp:</span>
                           <span className="font-mono font-bold text-indigo-600">{formatVal(tooltipData.finish.temp)}°</span>

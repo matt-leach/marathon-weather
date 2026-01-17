@@ -3,6 +3,7 @@ import { getSortedMarathonData } from './marathon_data';
 import { MarathonColumn } from './components/MarathonColumn';
 import { Timer, BarChart3, TrendingUp, Loader2, Info, X } from 'lucide-react';
 import { MarathonData } from './types';
+import { formatDuration, calculateMetricValue } from './utils';
 
 export type TimeMode = 'eliteMen' | 'eliteWomen' | 'mass';  // Currently only "mass" enabled
 export type Metric = 'temp' | 'sum';
@@ -45,15 +46,8 @@ const App: React.FC = () => {
   const tempDomain = useMemo(() => {
     if (data.length === 0) return (unit === 'F' ? [-5, 35] : [-20, 5]) as [number, number];
 
-    const getValue = (w: { temp: number; dew: number }) => {
-        let val = metric === 'sum' ? w.temp + w.dew : w.temp;
-        if (unit === 'C') {
-             // Convert to Celsius
-             const offset = metric === 'sum' ? 64 : 32;
-             val = (val - offset) * 5 / 9;
-        }
-        return val;
-    };
+    const getValue = (w: { temp: number; dew: number }) =>
+        calculateMetricValue(w.temp, w.dew, metric, unit);
     
     const allValues = data.flatMap(m => m.history.flatMap(h => h.weather.map(getValue)));
     
@@ -70,14 +64,7 @@ const App: React.FC = () => {
     return [minDomain, maxDomain] as [number, number];
   }, [metric, unit, data]);
 
-  const formatDurationLabel = (hrs: number) => {
-    const h = Math.floor(hrs);
-    const m = Math.round((hrs - h) * 60);
-    const mStr = m === 60 ? '00' : m.toString().padStart(2, '0');
-    const hFinal = m === 60 ? h + 1 : h;
-    return `${hFinal}:${mStr}`;
-  };
-
+  
   if (loading) {
       return (
           <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center gap-4">
@@ -149,7 +136,7 @@ const App: React.FC = () => {
                        <Timer className="w-3.5 h-3.5" /> Projected Finish Time
                     </div>
                     <div className="font-mono text-2xl font-bold text-indigo-600 tracking-tighter">
-                       {formatDurationLabel(duration)}
+                       {formatDuration(duration)}
                     </div>
                  </div>
                  <div className="relative h-5 flex items-center">

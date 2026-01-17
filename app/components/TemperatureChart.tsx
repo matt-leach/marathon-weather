@@ -1,6 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import { HistoryYear, WeatherPoint } from '../types';
 import { TimeMode, Metric, Unit } from '../App';
+import {
+  getDecimalHour,
+  getStartHourForYear,
+  calculateMetricValue,
+  formatDecimalTime,
+} from '../utils';
 
 interface TemperatureChartProps {
   history: HistoryYear[];
@@ -58,41 +64,6 @@ export const TemperatureChart: React.FC<TemperatureChartProps> = ({
     return padding.top + (1 - normalized) * (height - padding.top - padding.bottom);
   };
 
-  const getDecimalHour = (timeStr: string) => {
-    if (!timeStr) return 9; // Fallback
-    const [h, m] = timeStr.split(':').map(Number);
-    return h + m / 60;
-  };
-
-  const formatDecimalTime = (decimal: number) => {
-    let hrs = Math.floor(decimal);
-    const mins = Math.round((decimal - hrs) * 60);
-    const suffix = hrs >= 12 ? 'pm' : 'am';
-    
-    if (hrs > 12) hrs -= 12;
-    if (hrs === 0) hrs = 12; 
-    
-    const minsStr = mins < 10 ? `0${mins}` : `${mins}`;
-    return `${hrs}:${minsStr}${suffix}`;
-  };
-
-  const getStartHourForYear = (year: HistoryYear, mode: TimeMode, offsetMins: number) => {
-    let timeStr = year.startTimeMass;
-    let offsetHours = 0;
-
-    if (mode === 'eliteMen') {
-        timeStr = year.startTimeEliteMen || year.startTimeElite || year.startTimeMass;
-    } else if (mode === 'eliteWomen') {
-        timeStr = year.startTimeEliteWomen || year.startTimeElite || year.startTimeMass;
-    } else {
-        // Mass start mode
-        timeStr = year.startTimeMass;
-        offsetHours = offsetMins / 60;
-    }
-
-    return getDecimalHour(timeStr) + offsetHours;
-  };
-
   // Determine the display window based on the most recent year (index 0 of passed history)
   const referenceYear = history[0];
   const actualStartHour = getStartHourForYear(referenceYear, timeMode, massOffset);
@@ -115,15 +86,7 @@ export const TemperatureChart: React.FC<TemperatureChartProps> = ({
         t: getDecimalHour(p.datetime)
     })).sort((a, b) => a.t - b.t);
 
-    const getValue = (p: WeatherPoint) => {
-        let val = metric === 'sum' ? (p.temp + p.dew) : p.temp;
-        // Convert raw Fahrenheit data to Celsius if unit is C
-        if (unit === 'C') {
-            const offset = metric === 'sum' ? 64 : 32;
-            val = (val - offset) * 5 / 9;
-        }
-        return val;
-    };
+    const getValue = (p: WeatherPoint) => calculateMetricValue(p.temp, p.dew, metric, unit);
 
     // Function to interpolate value at a specific time t
     const interpolateAt = (targetT: number) => {
