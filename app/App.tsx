@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { Analytics } from "@vercel/analytics/react";
 import { getSortedMarathonData } from './marathon_data';
 import { MarathonColumn } from './components/MarathonColumn';
 import { Timer, BarChart3, TrendingUp, Loader2, Info, X } from 'lucide-react';
@@ -297,6 +298,8 @@ const App: React.FC = () => {
             </p>
          </div>
       </footer>
+
+      <Analytics />
     </div>
   );
 };
