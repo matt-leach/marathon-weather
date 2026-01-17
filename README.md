@@ -6,3 +6,8 @@ To update the data, you need to:
 - update data/marathons.json to include the new marathon or new date
 - run get_weather_data.py (requires a visual crossing api key in secrets.py)
 - copy data/weather.json to app/marathon_data.
+
+To run the web app:
+- Prerequisites: node.js
+- Install dependencies: `npm install`
+- Run the app: `npm run dev`
