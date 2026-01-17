@@ -10,8 +10,8 @@ BASE_URL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/se
 # API key for the Visual Crossing API
 API_KEY = secrets.VISUAL_CROSSING_API_KEY
 
-MARATHONS_JSON_PATH = "test_marathons.json"
-WEATHER_JSON_PATH = "test_weather.json"
+MARATHONS_JSON_PATH = "marathons.json"
+WEATHER_JSON_PATH = "weather.json"
 
 def get_weather_data(location, date):
     """

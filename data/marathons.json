@@ -1,68 +1,207 @@
 [
     {
-        "name": "London Marathon", 
-        "history": [
-            {
-                "year": 2025,
-                "date": "2025-04-27"
-            },
-            {
-                "year": 2024,
-                "date": "2024-04-21"
-            },
-            {
-                "year": 2023,
-                "date": "2023-04-23"
-            },
-            {
-                "year": 2022,
-                "date": "2022-10-02"
-            }
-        ],
-        "location": "London, UK"
-    }, 
+      "name": "Tokyo Marathon",
+      "location": "Tokyo, Japan",
+      "timezone": "Asia/Tokyo",
+      "history": [
+        { "year": 2025, "date": "2025-03-02", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
+        { "year": 2024, "date": "2024-03-03", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
+        { "year": 2023, "date": "2023-03-05", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
+        { "year": 2022, "date": "2022-03-06", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
+        { "year": 2021, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Postponed to 2022 due to COVID." },
+        { "year": 2020, "date": "2020-03-01", "startTimeMass": null, "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10", "note": "Elite only due to COVID." },
+        { "year": 2019, "date": "2019-03-03", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
+        { "year": 2018, "date": "2018-02-25", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
+        { "year": 2017, "date": "2017-02-26", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
+        { "year": 2016, "date": "2016-02-28", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" }
+      ]
+    },
     {
-        "name": "Berlin Marathon", 
-        "history": [
-            {
-                "year": 2025,
-                "date": "2025-09-21"
-            },
-            {
-                "year": 2024,
-                "date": "2024-09-29"
-            },
-            {
-                "year": 2023,
-                "date": "2023-09-24"
-            },
-            {
-                "year": 2022,
-                "date": "2022-09-25"
-            }
-        ],
-        "location": "Berlin, Germany"
-    }, 
+      "name": "Boston Marathon",
+      "location": "Boston, MA, USA",
+      "timezone": "America/New_York",
+      "history": [
+        { "year": 2025, "date": "2025-04-21", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:47" },
+        { "year": 2024, "date": "2024-04-15", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:47" },
+        { "year": 2023, "date": "2023-04-17", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:47" },
+        { "year": 2022, "date": "2022-04-18", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:45" },
+        { "year": 2021, "date": "2021-10-11", "startTimeMass": "09:00", "startTimeEliteMen": "08:37", "startTimeEliteWomen": "08:45", "note": "Held in October." },
+        { "year": 2020, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Cancelled (Virtual only)." },
+        { "year": 2019, "date": "2019-04-15", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:32" },
+        { "year": 2018, "date": "2018-04-16", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:32" },
+        { "year": 2017, "date": "2017-04-17", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:32" },
+        { "year": 2016, "date": "2016-04-18", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:32" }
+      ]
+    },
     {
-        "name": "New York Marathon", 
-        "history": [
-            {
-                "year": 2025,
-                "date": "2025-11-02"
-            },
-            {
-                "year": 2024,
-                "date": "2024-11-03"
-            },
-            {
-                "year": 2023,
-                "date": "2023-11-05"
-            },
-            {
-                "year": 2022,
-                "date": "2022-11-06"
-            }
-        ],
-        "location": "New York, USA"
+      "name": "London Marathon",
+      "location": "London, UK",
+      "timezone": "Europe/London",
+      "history": [
+        { "year": 2025, "date": "2025-04-27", "startTimeMass": "10:00", "startTimeEliteMen": "10:00", "startTimeEliteWomen": "09:25" },
+        { "year": 2024, "date": "2024-04-21", "startTimeMass": "10:00", "startTimeEliteMen": "10:00", "startTimeEliteWomen": "09:25" },
+        { "year": 2023, "date": "2023-04-23", "startTimeMass": "10:00", "startTimeEliteMen": "10:00", "startTimeEliteWomen": "09:25" },
+        { "year": 2022, "date": "2022-10-02", "startTimeMass": "09:40", "startTimeEliteMen": "09:40", "startTimeEliteWomen": "09:00", "note": "Held in October." },
+        { "year": 2021, "date": "2021-10-03", "startTimeMass": "09:30", "startTimeEliteMen": "09:30", "startTimeEliteWomen": "09:00", "note": "Held in October." },
+        { "year": 2020, "date": "2020-10-04", "startTimeMass": null, "startTimeEliteMen": "10:15", "startTimeEliteWomen": "07:15", "note": "Elite only on closed course." },
+        { "year": 2019, "date": "2019-04-28", "startTimeMass": "10:10", "startTimeEliteMen": "10:10", "startTimeEliteWomen": "09:25" },
+        { "year": 2018, "date": "2018-04-22", "startTimeMass": "10:00", "startTimeEliteMen": "10:00", "startTimeEliteWomen": "09:15" },
+        { "year": 2017, "date": "2017-04-23", "startTimeMass": "10:00", "startTimeEliteMen": "10:00", "startTimeEliteWomen": "09:15" },
+        { "year": 2016, "date": "2016-04-24", "startTimeMass": "10:00", "startTimeEliteMen": "10:00", "startTimeEliteWomen": "09:15" }
+      ]
+    },
+    {
+      "name": "Berlin Marathon",
+      "location": "Berlin, Germany",
+      "timezone": "Europe/Berlin",
+      "history": [
+        { "year": 2025, "date": "2025-09-21", "startTimeMass": "09:15", "startTimeEliteMen": "09:15", "startTimeEliteWomen": "09:15" },
+        { "year": 2024, "date": "2024-09-29", "startTimeMass": "09:15", "startTimeEliteMen": "09:15", "startTimeEliteWomen": "09:15" },
+        { "year": 2023, "date": "2023-09-24", "startTimeMass": "09:15", "startTimeEliteMen": "09:15", "startTimeEliteWomen": "09:15" },
+        { "year": 2022, "date": "2022-09-25", "startTimeMass": "09:15", "startTimeEliteMen": "09:15", "startTimeEliteWomen": "09:15" },
+        { "year": 2021, "date": "2021-09-26", "startTimeMass": "09:15", "startTimeEliteMen": "09:15", "startTimeEliteWomen": "09:15" },
+        { "year": 2020, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Cancelled." },
+        { "year": 2019, "date": "2019-09-29", "startTimeMass": "09:15", "startTimeEliteMen": "09:15", "startTimeEliteWomen": "09:15" },
+        { "year": 2018, "date": "2018-09-16", "startTimeMass": "09:15", "startTimeEliteMen": "09:15", "startTimeEliteWomen": "09:15" },
+        { "year": 2017, "date": "2017-09-24", "startTimeMass": "09:15", "startTimeEliteMen": "09:15", "startTimeEliteWomen": "09:15" },
+        { "year": 2016, "date": "2016-09-25", "startTimeMass": "09:15", "startTimeEliteMen": "09:15", "startTimeEliteWomen": "09:15" }
+      ]
+    },
+    {
+      "name": "Chicago Marathon",
+      "location": "Chicago, IL, USA",
+      "timezone": "America/Chicago",
+      "history": [
+        { "year": 2025, "date": "2025-10-12", "startTimeMass": "07:30", "startTimeEliteMen": "07:30", "startTimeEliteWomen": "07:30" },
+        { "year": 2024, "date": "2024-10-13", "startTimeMass": "07:30", "startTimeEliteMen": "07:30", "startTimeEliteWomen": "07:30" },
+        { "year": 2023, "date": "2023-10-08", "startTimeMass": "07:30", "startTimeEliteMen": "07:30", "startTimeEliteWomen": "07:30" },
+        { "year": 2022, "date": "2022-10-09", "startTimeMass": "07:30", "startTimeEliteMen": "07:30", "startTimeEliteWomen": "07:30" },
+        { "year": 2021, "date": "2021-10-10", "startTimeMass": "07:30", "startTimeEliteMen": "07:30", "startTimeEliteWomen": "07:30" },
+        { "year": 2020, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Cancelled." },
+        { "year": 2019, "date": "2019-10-13", "startTimeMass": "07:30", "startTimeEliteMen": "07:30", "startTimeEliteWomen": "07:30" },
+        { "year": 2018, "date": "2018-10-07", "startTimeMass": "07:30", "startTimeEliteMen": "07:30", "startTimeEliteWomen": "07:30" },
+        { "year": 2017, "date": "2017-10-08", "startTimeMass": "07:30", "startTimeEliteMen": "07:30", "startTimeEliteWomen": "07:30" },
+        { "year": 2016, "date": "2016-10-09", "startTimeMass": "07:30", "startTimeEliteMen": "07:30", "startTimeEliteWomen": "07:30" }
+      ]
+    },
+    {
+      "name": "New York City Marathon",
+      "location": "New York, NY, USA",
+      "timezone": "America/New_York",
+      "history": [
+        { "year": 2025, "date": "2025-11-02", "startTimeMass": "09:10", "startTimeEliteMen": "09:05", "startTimeEliteWomen": "08:35" },
+        { "year": 2024, "date": "2024-11-03", "startTimeMass": "09:10", "startTimeEliteMen": "09:05", "startTimeEliteWomen": "08:35" },
+        { "year": 2023, "date": "2023-11-05", "startTimeMass": "09:10", "startTimeEliteMen": "09:05", "startTimeEliteWomen": "08:35" },
+        { "year": 2022, "date": "2022-11-06", "startTimeMass": "09:10", "startTimeEliteMen": "09:05", "startTimeEliteWomen": "08:40" },
+        { "year": 2021, "date": "2021-11-07", "startTimeMass": "09:10", "startTimeEliteMen": "09:05", "startTimeEliteWomen": "08:40" },
+        { "year": 2020, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Cancelled." },
+        { "year": 2019, "date": "2019-11-03", "startTimeMass": "09:10", "startTimeEliteMen": "09:05", "startTimeEliteWomen": "08:40" },
+        { "year": 2018, "date": "2018-11-04", "startTimeMass": "09:10", "startTimeEliteMen": "09:05", "startTimeEliteWomen": "08:30" },
+        { "year": 2017, "date": "2017-11-05", "startTimeMass": "09:10", "startTimeEliteMen": "09:05", "startTimeEliteWomen": "08:30" },
+        { "year": 2016, "date": "2016-11-06", "startTimeMass": "09:10", "startTimeEliteMen": "09:05", "startTimeEliteWomen": "08:30" }
+      ]
+    },
+    {
+      "name": "Sydney Marathon",
+      "location": "Sydney, Australia",
+      "timezone": "Australia/Sydney",
+      "history": [
+        { "year": 2025, "date": "2025-08-31", "startTimeMass": "06:31", "startTimeEliteMen": "06:30", "startTimeEliteWomen": "06:30", "note": "Moved to August." },
+        { "year": 2024, "date": "2024-09-15", "startTimeMass": "07:10", "startTimeEliteMen": "07:10", "startTimeEliteWomen": "07:10" },
+        { "year": 2023, "date": "2023-09-17", "startTimeMass": "07:10", "startTimeEliteMen": "07:10", "startTimeEliteWomen": "07:10" },
+        { "year": 2022, "date": "2022-09-18", "startTimeMass": "07:05", "startTimeEliteMen": "07:05", "startTimeEliteWomen": "07:05" },
+        { "year": 2021, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Cancelled." },
+        { "year": 2020, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Cancelled." },
+        { "year": 2019, "date": "2019-09-15", "startTimeMass": "07:05", "startTimeEliteMen": "07:05", "startTimeEliteWomen": "07:05" },
+        { "year": 2018, "date": "2018-09-16", "startTimeMass": "07:05", "startTimeEliteMen": "07:05", "startTimeEliteWomen": "07:05" },
+        { "year": 2017, "date": "2017-09-17", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" },
+        { "year": 2016, "date": "2016-09-18", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" }
+      ]
+    },
+    {
+      "name": "Valencia Marathon",
+      "location": "Valencia, Spain",
+      "timezone": "Europe/Madrid",
+      "history": [
+        { "year": 2025, "date": "2025-12-07", "startTimeMass": "08:15", "startTimeEliteMen": "08:15", "startTimeEliteWomen": "08:15" },
+        { "year": 2024, "date": "2024-12-01", "startTimeMass": "08:15", "startTimeEliteMen": "08:15", "startTimeEliteWomen": "08:15" },
+        { "year": 2023, "date": "2023-12-03", "startTimeMass": "08:15", "startTimeEliteMen": "08:15", "startTimeEliteWomen": "08:15" },
+        { "year": 2022, "date": "2022-12-04", "startTimeMass": "08:15", "startTimeEliteMen": "08:15", "startTimeEliteWomen": "08:15" },
+        { "year": 2021, "date": "2021-12-05", "startTimeMass": "08:15", "startTimeEliteMen": "08:15", "startTimeEliteWomen": "08:15" },
+        { "year": 2020, "date": "2020-12-06", "startTimeMass": null, "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30", "note": "Elite only." },
+        { "year": 2019, "date": "2019-12-01", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
+        { "year": 2018, "date": "2018-12-02", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
+        { "year": 2017, "date": "2017-11-19", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30", "note": "Held in November." },
+        { "year": 2016, "date": "2016-11-20", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30", "note": "Held in November." }
+      ]
+    },
+    {
+      "name": "CIM",
+      "location": "Sacramento, CA, USA",
+      "timezone": "America/Los_Angeles",
+      "history": [
+        { "year": 2025, "date": "2025-12-07", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" },
+        { "year": 2024, "date": "2024-12-08", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" },
+        { "year": 2023, "date": "2023-12-03", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" },
+        { "year": 2022, "date": "2022-12-04", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" },
+        { "year": 2021, "date": "2021-12-05", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" },
+        { "year": 2020, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Cancelled." },
+        { "year": 2019, "date": "2019-12-08", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" },
+        { "year": 2018, "date": "2018-12-02", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" },
+        { "year": 2017, "date": "2017-12-03", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" },
+        { "year": 2016, "date": "2016-12-04", "startTimeMass": "07:00", "startTimeEliteMen": "07:00", "startTimeEliteWomen": "07:00" }
+      ]
+    },
+    {
+      "name": "Houston Marathon",
+      "location": "Houston, TX, USA",
+      "timezone": "America/Chicago",
+      "history": [
+        { "year": 2026, "date": "2026-01-11", "startTimeMass": "07:01", "startTimeEliteMen": "07:01", "startTimeEliteWomen": "07:01" },
+        { "year": 2025, "date": "2025-01-19", "startTimeMass": "07:01", "startTimeEliteMen": "07:01", "startTimeEliteWomen": "07:01" },
+        { "year": 2024, "date": "2024-01-14", "startTimeMass": "07:01", "startTimeEliteMen": "07:01", "startTimeEliteWomen": "07:01" },
+        { "year": 2023, "date": "2023-01-15", "startTimeMass": "07:01", "startTimeEliteMen": "07:01", "startTimeEliteWomen": "07:01" },
+        { "year": 2022, "date": "2022-01-16", "startTimeMass": "07:01", "startTimeEliteMen": "07:01", "startTimeEliteWomen": "07:01" },
+        { "year": 2021, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Virtual only." },
+        { "year": 2020, "date": "2020-01-19", "startTimeMass": "07:01", "startTimeEliteMen": "07:01", "startTimeEliteWomen": "07:01" },
+        { "year": 2019, "date": "2019-01-20", "startTimeMass": "07:01", "startTimeEliteMen": "07:01", "startTimeEliteWomen": "07:01" },
+        { "year": 2018, "date": "2018-01-14", "startTimeMass": "07:01", "startTimeEliteMen": "07:01", "startTimeEliteWomen": "07:01" },
+        { "year": 2017, "date": "2017-01-15", "startTimeMass": "07:01", "startTimeEliteMen": "07:01", "startTimeEliteWomen": "07:01" },
+        { "year": 2016, "date": "2016-01-17", "startTimeMass": "07:01", "startTimeEliteMen": "07:01", "startTimeEliteWomen": "07:01" }
+      ]
+    },
+    {
+      "name": "Amsterdam Marathon",
+      "location": "Amsterdam, Netherlands",
+      "timezone": "Europe/Amsterdam",
+      "history": [
+        { "year": 2025, "date": "2025-10-19", "startTimeMass": "09:00", "startTimeEliteMen": "09:00", "startTimeEliteWomen": "09:00" },
+        { "year": 2024, "date": "2024-10-20", "startTimeMass": "09:00", "startTimeEliteMen": "09:00", "startTimeEliteWomen": "09:00" },
+        { "year": 2023, "date": "2023-10-15", "startTimeMass": "09:00", "startTimeEliteMen": "09:00", "startTimeEliteWomen": "09:00" },
+        { "year": 2022, "date": "2022-10-16", "startTimeMass": "09:00", "startTimeEliteMen": "09:00", "startTimeEliteWomen": "09:00" },
+        { "year": 2021, "date": "2021-10-17", "startTimeMass": "09:00", "startTimeEliteMen": "09:00", "startTimeEliteWomen": "09:00" },
+        { "year": 2020, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Cancelled." },
+        { "year": 2019, "date": "2019-10-20", "startTimeMass": "09:00", "startTimeEliteMen": "09:00", "startTimeEliteWomen": "09:00" },
+        { "year": 2018, "date": "2018-10-21", "startTimeMass": "09:00", "startTimeEliteMen": "09:00", "startTimeEliteWomen": "09:00" },
+        { "year": 2017, "date": "2017-10-15", "startTimeMass": "09:00", "startTimeEliteMen": "09:00", "startTimeEliteWomen": "09:00" },
+        { "year": 2016, "date": "2016-10-16", "startTimeMass": "09:00", "startTimeEliteMen": "09:00", "startTimeEliteWomen": "09:00" }
+      ]
+    },
+    {
+      "name": "Seville Marathon",
+      "location": "Seville, Spain",
+      "timezone": "Europe/Madrid",
+      "history": [
+        { "year": 2025, "date": "2025-02-23", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
+        { "year": 2024, "date": "2024-02-18", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
+        { "year": 2023, "date": "2023-02-19", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
+        { "year": 2022, "date": "2022-02-20", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
+        { "year": 2021, "date": null, "startTimeMass": null, "startTimeEliteMen": null, "startTimeEliteWomen": null, "note": "Cancelled." },
+        { "year": 2020, "date": "2020-02-23", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
+        { "year": 2019, "date": "2019-02-17", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
+        { "year": 2018, "date": "2018-02-25", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
+        { "year": 2017, "date": "2017-02-19", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
+        { "year": 2016, "date": "2016-02-21", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" }
+      ]
     }
-]
+  ]
