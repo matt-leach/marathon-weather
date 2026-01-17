@@ -1,0 +1,5 @@
+{
+  "name": "Marathon Weather Viz",
+  "description": "Interactive visualization of historical marathon weather conditions.",
+  "requestFramePermissions": []
+}
