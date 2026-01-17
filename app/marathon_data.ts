@@ -1,7 +1,7 @@
 import { MarathonData } from './types';
 
 export async function fetchMarathonData(): Promise<MarathonData[]> {
-  const response = await fetch('marathon_data.json');
+  const response = await fetch('/marathon_data.json');
   const data: MarathonData[] = await response.json();
   return data;
 }
