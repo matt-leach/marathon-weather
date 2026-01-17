@@ -12,6 +12,7 @@ export type ViewMode = 'hourly' | 'yearly';
 const App: React.FC = () => {
   const [data, setData] = useState<MarathonData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   
   // Default to 3h marathon
@@ -32,6 +33,7 @@ const App: React.FC = () => {
             setData(sortedData);
         } catch (e) {
             console.error("Failed to fetch marathon data", e);
+            setError("Failed to load race data. Please try refreshing the page.");
         } finally {
             setLoading(false);
         }
@@ -81,6 +83,21 @@ const App: React.FC = () => {
           <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center gap-4">
               <Loader2 className="w-10 h-10 text-indigo-600 animate-spin" />
               <p className="text-slate-400 font-medium text-sm animate-pulse">Loading race data...</p>
+          </div>
+      );
+  }
+
+  if (error) {
+      return (
+          <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center gap-4">
+              <div className="text-red-500 text-5xl">!</div>
+              <p className="text-slate-600 font-medium text-sm">{error}</p>
+              <button
+                  onClick={() => window.location.reload()}
+                  className="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors"
+              >
+                  Refresh
+              </button>
           </div>
       );
   }
