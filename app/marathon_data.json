@@ -714,7 +714,7 @@
       {
         "year": 2020,
         "date": "2020-03-01",
-        "startTimeMass": null,
+        "startTimeMass": "09:10",
         "startTimeEliteMen": "09:10",
         "startTimeEliteWomen": "09:10",
         "weather": [
@@ -4089,7 +4089,7 @@
       {
         "year": 2020,
         "date": "2020-10-04",
-        "startTimeMass": null,
+        "startTimeMass": "07:15",
         "startTimeEliteMen": "10:15",
         "startTimeEliteWomen": "07:15",
         "weather": [
@@ -12147,7 +12147,7 @@
       {
         "year": 2020,
         "date": "2020-12-06",
-        "startTimeMass": null,
+        "startTimeMass": "08:30",
         "startTimeEliteMen": "08:30",
         "startTimeEliteWomen": "08:30",
         "weather": [
