@@ -101,7 +101,7 @@ const App: React.FC = () => {
               <path d="M12 6v6l4 2" />
             </svg>
             <h1 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-              MarathonWeather<span className="font-light text-slate-400">.viz</span>
+              marathons<span className="font-light text-slate-400">.fyi</span>
             </h1>
           </div>
           <button 
@@ -234,7 +234,7 @@ const App: React.FC = () => {
             <div className="space-y-6">
               <div>
                 <h3 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
-                  <Info className="w-6 h-6 text-indigo-600" /> About MarathonWeather.viz
+                  <Info className="w-6 h-6 text-indigo-600" /> About marathons.fyi
                 </h3>
                 <p className="mt-4 text-slate-600 leading-relaxed text-lg">
                   This tool allows you to see historical weather data for some of the world's most popular marathons, and how
