@@ -2,10 +2,14 @@ This repo allows you to visualize the weather at some selected large marathons o
 
 It is split up into data collection (data/) and frontend (app/).
 
-To update the data, you need to:
-- update data/marathons.json to include the new marathon or new date
-- run get_weather_data.py (requires a visual crossing api key in secrets.py)
-- copy data/weather.json to app/marathon_data.
+To update the data, you need to do the following:
+
+1. update `data/marathons.json` to include the new marathon or a new date
+
+2. Run `cd data && uv run get_weather_data.py` (requires a visual crossing api key in `secrets.py`).
+
+3. Copy `data/weather.json` to `app/public/marathon_data.json`
+
 
 To run the web app:
 - Prerequisites: node.js
