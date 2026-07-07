@@ -4,6 +4,7 @@
       "location": "Tokyo, Japan",
       "timezone": "Asia/Tokyo",
       "history": [
+        { "year": 2026, "date": "2026-03-01", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
         { "year": 2025, "date": "2025-03-02", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
         { "year": 2024, "date": "2024-03-03", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
         { "year": 2023, "date": "2023-03-05", "startTimeMass": "09:10", "startTimeEliteMen": "09:10", "startTimeEliteWomen": "09:10" },
@@ -21,6 +22,7 @@
       "location": "Boston, MA, USA",
       "timezone": "America/New_York",
       "history": [
+        { "year": 2026, "date": "2026-04-20", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:47" },
         { "year": 2025, "date": "2025-04-21", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:47" },
         { "year": 2024, "date": "2024-04-15", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:47" },
         { "year": 2023, "date": "2023-04-17", "startTimeMass": "10:00", "startTimeEliteMen": "09:37", "startTimeEliteWomen": "09:47" },
@@ -38,6 +40,7 @@
       "location": "London, UK",
       "timezone": "Europe/London",
       "history": [
+        { "year": 2026, "date": "2026-04-26", "startTimeMass": "09:35", "startTimeEliteMen": "09:35", "startTimeEliteWomen": "09:05" },
         { "year": 2025, "date": "2025-04-27", "startTimeMass": "10:00", "startTimeEliteMen": "10:00", "startTimeEliteWomen": "09:25" },
         { "year": 2024, "date": "2024-04-21", "startTimeMass": "10:00", "startTimeEliteMen": "10:00", "startTimeEliteWomen": "09:25" },
         { "year": 2023, "date": "2023-04-23", "startTimeMass": "10:00", "startTimeEliteMen": "10:00", "startTimeEliteWomen": "09:25" },
@@ -192,6 +195,7 @@
       "location": "Seville, Spain",
       "timezone": "Europe/Madrid",
       "history": [
+        { "year": 2026, "date": "2026-02-15", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
         { "year": 2025, "date": "2025-02-23", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
         { "year": 2024, "date": "2024-02-18", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
         { "year": 2023, "date": "2023-02-19", "startTimeMass": "08:30", "startTimeEliteMen": "08:30", "startTimeEliteWomen": "08:30" },
