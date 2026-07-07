@@ -19,6 +19,8 @@ interface TemperatureChartProps {
   unit: Unit;
 }
 
+const FONT = '"IBM Plex Mono", ui-monospace, monospace';
+
 export const TemperatureChart: React.FC<TemperatureChartProps> = ({ 
     history, 
     duration, 
@@ -34,21 +36,19 @@ export const TemperatureChart: React.FC<TemperatureChartProps> = ({
   // Configuration
   const height = 300;
   const width = 400; 
-  const padding = { top: 20, right: 20, bottom: 30, left: 30 };
+  const padding = { top: 24, right: 12, bottom: 30, left: 30 };
   
   const tempRange = maxTemp - minTemp;
 
   // Sort history chronologically (Oldest -> Newest) for the gradient mapping
   const sortedHistory = useMemo(() => [...history].sort((a, b) => a.year - b.year), [history]);
 
-  // Helper to map index to color (Light Red -> Dark Red)
+  // Helper to map index to color (light clay -> near-black rust)
   const getYearColor = (index: number, total: number) => {
-    if (total <= 1) return '#dc2626';
+    if (total <= 1) return '#9a3b1e';
     
-    // Interpolate between Red-300 (#fca5a5) and Red-950 (#450a0a)
-    // RGB: 252,165,165 -> 69,10,10
-    const start = { r: 252, g: 165, b: 165 };
-    const end = { r: 69, g: 10, b: 10 };
+    const start = { r: 229, g: 184, b: 163 }; // #e5b8a3
+    const end = { r: 67, g: 20, b: 11 };      // #43140b
     
     const t = index / (total - 1);
     
@@ -68,9 +68,8 @@ export const TemperatureChart: React.FC<TemperatureChartProps> = ({
   const referenceYear = history[0];
   const actualStartHour = getStartHourForYear(referenceYear, timeMode, massOffset);
   
-  // NEW: X-axis start time is 30 minutes (0.5 hours) before the actual start
+  // X-axis window: 30 minutes before the start through 30 minutes after the finish
   const viewStartHour = actualStartHour - 0.5;
-  // X-axis end time covers the duration of the race plus 30 minutes (0.5 hours) buffer
   const viewEndHour = actualStartHour + duration + 0.5;
   const timeRange = viewEndHour - viewStartHour;
 
@@ -199,16 +198,15 @@ export const TemperatureChart: React.FC<TemperatureChartProps> = ({
                     y1={getY(temp)} 
                     x2={width - padding.right} 
                     y2={getY(temp)} 
-                    stroke="#e2e8f0" 
-                    strokeDasharray="4 4" 
+                    stroke="#e7e2da" 
                     strokeWidth="1"
                 />
                 <text 
-                    x={padding.left - 5} 
+                    x={padding.left - 6} 
                     y={getY(temp)} 
-                    fill="#94a3b8" 
-                    fontWeight="400"
-                    fontSize="10" 
+                    fill="#57534e" 
+                    fontFamily={FONT}
+                    fontSize="9" 
                     textAnchor="end" 
                     alignmentBaseline="middle"
                 >
@@ -225,26 +223,25 @@ export const TemperatureChart: React.FC<TemperatureChartProps> = ({
                     y1={getY(thresholdValue)} 
                     x2={width - padding.right} 
                     y2={getY(thresholdValue)} 
-                    stroke="black" 
-                    strokeWidth="1.5" 
-                    strokeDasharray="2 2"
+                    stroke="#1c1917" 
+                    strokeWidth="1" 
+                    strokeDasharray="2 3"
                     opacity="0.5"
                 />
                 <text 
                     x={width - padding.right} 
                     y={getY(thresholdValue) - 4} 
-                    fill="black" 
-                    fontSize="10" 
+                    fill="#57534e" 
+                    fontFamily={FONT}
+                    fontSize="9" 
                     textAnchor="end" 
-                    opacity="0.6"
-                    fontWeight="600"
                 >
-                    &gt;1% &Delta; pace
+                    &gt;1% slower
                 </text>
             </g>
         )}
 
-        {/* Vertical Grid Lines (Time) */}
+        {/* Time axis labels */}
         {timeTicks.map(hour => {
              const x = getX(hour);
              
@@ -260,16 +257,17 @@ export const TemperatureChart: React.FC<TemperatureChartProps> = ({
              return (
                 <g key={hour}>
                     <line 
-                        x1={x} y1={padding.top} 
-                        x2={x} y2={height - padding.bottom} 
-                        stroke="#f1f5f9" 
+                        x1={x} y1={height - padding.bottom} 
+                        x2={x} y2={height - padding.bottom + 4} 
+                        stroke="#a8a29e" 
                         strokeWidth="1"
                     />
                     <text 
                         x={x} 
                         y={height - 10} 
-                        fill="#94a3b8" 
-                        fontSize="10" 
+                        fill="#57534e" 
+                        fontFamily={FONT}
+                        fontSize="9" 
                         textAnchor="middle"
                     >
                         {displayVal}{suffix}
@@ -277,61 +275,52 @@ export const TemperatureChart: React.FC<TemperatureChartProps> = ({
                 </g>
              );
         })}
-        
-        {/* Selected Start Time Line */}
-        <g>
-            <line 
-                x1={startLineX} 
-                y1={padding.top} 
-                x2={startLineX} 
-                y2={height - padding.bottom} 
-                stroke="black" 
-                strokeWidth="2" 
-                strokeDasharray="4 4"
-                opacity="0.6"
-            />
-            <text
-                x={startLineX + 4} 
-                y={padding.top - 8}
-                textAnchor="start"
-                fontSize="11"
-                fontWeight="bold"
-                fill="black"
-            >
-                Start ({formatDecimalTime(actualStartHour)})
-            </text>
-        </g>
-        
-        {/* Selected Finish Time Line */}
-        <g>
-            <line 
-                x1={finishLineX} 
-                y1={padding.top} 
-                x2={finishLineX} 
-                y2={height - padding.bottom} 
-                stroke="black" 
-                strokeWidth="2" 
-                strokeDasharray="4 4"
-                opacity="0.6"
-            />
-            <text
-                x={finishLineX} 
-                y={padding.top - 8}
-                textAnchor="end"
-                fontSize="11"
-                fontWeight="bold"
-                fill="black"
-            >
-                Finish ({formatDecimalTime(actualStartHour + duration)})
-            </text>
-        </g>
 
-        {/* The Squiggles (Data Lines) */}
+        {/* Baseline */}
+        <line
+            x1={padding.left}
+            y1={height - padding.bottom}
+            x2={width - padding.right}
+            y2={height - padding.bottom}
+            stroke="#d6d3d1"
+            strokeWidth="1"
+        />
+        
+        {/* Start / Finish markers */}
+        {[
+          { x: startLineX, label: `start ${formatDecimalTime(actualStartHour)}`, anchor: 'start' as const, dx: 4 },
+          { x: finishLineX, label: `finish ${formatDecimalTime(actualStartHour + duration)}`, anchor: 'end' as const, dx: 0 },
+        ].map(marker => (
+          <g key={marker.label}>
+            <line 
+                x1={marker.x} 
+                y1={padding.top - 2} 
+                x2={marker.x} 
+                y2={height - padding.bottom} 
+                stroke="#1c1917" 
+                strokeWidth="1" 
+                strokeDasharray="1 3"
+                opacity="0.7"
+            />
+            <text
+                x={marker.x + marker.dx} 
+                y={padding.top - 8}
+                textAnchor={marker.anchor}
+                fontFamily={FONT}
+                fontSize="9"
+                fill="#57534e"
+            >
+                {marker.label}
+            </text>
+          </g>
+        ))}
+
+        {/* Data lines */}
         {sortedHistory.map((yearData, index) => {
             const isHovered = hoveredYear === yearData.year;
             // Opacity handling: if one is hovered, fade others significantly. Default is slightly transparent to see overlaps.
-            const opacity = hoveredYear ? (isHovered ? 1 : 0.1) : 0.8;
-            const strokeWidth = isHovered ? 3 : 2;
+            const opacity = hoveredYear ? (isHovered ? 1 : 0.12) : 0.85;
+            const strokeWidth = isHovered ? 2.5 : 1.5;
             const color = getYearColor(index, sortedHistory.length);
             
             const path = generatePath(yearData.weather);
@@ -347,7 +336,7 @@ export const TemperatureChart: React.FC<TemperatureChartProps> = ({
                             opacity={opacity}
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            className="transition-all duration-200 cursor-pointer hover:drop-shadow-md"
+                            className="transition-all duration-200 cursor-pointer"
                         />
                     )}
                 </g>
@@ -357,7 +346,7 @@ export const TemperatureChart: React.FC<TemperatureChartProps> = ({
       
       {/* Tooltip for currently hovered year */}
       {hoveredYear && (
-          <div className="absolute top-2 right-2 bg-white/90 backdrop-blur border border-slate-200 shadow-sm rounded-lg px-2 py-1 text-xs font-bold text-slate-600 pointer-events-none z-10">
+          <div className="absolute top-0 right-0 bg-paper border border-stone-300 rounded px-2 py-0.5 font-mono text-xs text-ink pointer-events-none z-10">
               {hoveredYear}
           </div>
       )}

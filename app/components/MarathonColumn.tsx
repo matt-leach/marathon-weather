@@ -2,7 +2,6 @@ import React from 'react';
 import { MarathonData } from '../types';
 import { TemperatureChart } from './TemperatureChart';
 import { YearlyBubbleChart } from './YearlyBubbleChart';
-import { MapPin } from 'lucide-react';
 import { TimeMode, Metric, Unit, ViewMode } from '../App';
 
 interface MarathonColumnProps {
@@ -24,86 +23,57 @@ const getCountryFlag = (location: string) => {
     if (location.includes('Australia')) return '🇦🇺';
     if (location.includes('Spain')) return '🇪🇸';
     if (location.includes('Netherlands')) return '🇳🇱';
-    return '🏳️';
+    return '';
 };
 
-export const MarathonColumn: React.FC<MarathonColumnProps> = ({ 
-    data, 
-    duration, 
-    tempDomain, 
-    timeMode, 
+export const MarathonColumn: React.FC<MarathonColumnProps> = ({
+    data,
+    duration,
+    tempDomain,
+    timeMode,
     massOffset,
-    metric, 
-    unit, 
-    viewMode 
+    metric,
+    unit,
+    viewMode
 }) => {
   // Get the month from the most recent/upcoming race date
-  const month = new Date(data.history[0].date).toLocaleString('default', { month: 'short' }).toUpperCase();
-
-  // Dynamic font size for long race names like "California International Marathon"
-  const titleClass = data.race.length > 25 
-    ? "text-lg" 
-    : (data.race.length > 15 ? "text-xl" : "text-2xl");
+  const month = new Date(data.history[0].date).toLocaleString('default', { month: 'long' });
+  const flag = getCountryFlag(data.location);
 
   // Calculate year range for hourly legend
   const years = data.history.map(h => h.year);
   const minYear = Math.min(...years);
   const maxYear = Math.max(...years);
 
-  const renderFootnote = () => {
+  const footnote = (() => {
     if (viewMode !== 'yearly') return null;
-
     if (data.race.includes('London')) {
-        return (
-             <div className="mt-2 px-2 text-[10px] text-slate-400 italic text-center leading-tight">
-                *London Marathons in 2020, 2021, 2022 were held in October due to the Covid-19 pandemic
-             </div>
-        );
+        return '* Held in October (2020–22) due to the pandemic.';
     }
     if (data.race.includes('Boston')) {
-        return (
-             <div className="mt-2 px-2 text-[10px] text-slate-400 italic text-center leading-tight">
-                *The 2021 Boston Marathon was held in October due to the Covid-19 pandemic
-             </div>
-        );
+        return '* The 2021 race was held in October due to the pandemic.';
     }
     return null;
-  };
+  })();
 
   return (
-    <div className="flex flex-col gap-4 w-full h-full">
-      {/* Header Card */}
-      <div className="text-center space-y-1 mb-2">
-        <h2 className={`${titleClass} font-bold text-slate-900 tracking-tight whitespace-nowrap overflow-hidden text-ellipsis px-1`}>
+    <section className="flex flex-col w-full h-full">
+      {/* Header */}
+      <div className="border-t-2 border-ink pt-3 mb-1">
+        <h2 className="font-serif text-xl font-semibold tracking-tight leading-snug">
             {data.race}
         </h2>
-        <div className="flex justify-center items-center gap-3">
-            <div className="flex items-center gap-1 text-xs font-medium text-slate-500 uppercase tracking-wider">
-                <MapPin className="w-3 h-3" /> {data.location.split(',')[0]}
-            </div>
-            <div className="flex items-center gap-1.5">
-                <span className="text-sm shadow-sm rounded-sm" role="img" aria-label="country flag">
-                    {getCountryFlag(data.location)}
-                </span>
-                <span className="text-[10px] font-bold text-slate-400 border border-slate-200 px-1.5 py-0.5 rounded bg-slate-50 tracking-wider">
-                    {month}
-                </span>
-            </div>
+        <div className="mt-0.5 text-xs text-stone-600">
+            {data.location.split(',')[0]}{flag ? ` ${flag}` : ''} · {month}
         </div>
       </div>
 
-      {/* Chart Container */}
-      <div className="flex-1 bg-white rounded-xl border border-slate-50 pt-2 relative">
-         <div className="px-4 mb-2 flex justify-between items-end">
-            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-              {metric === 'temp' ? 'Temperature' : 'Temperature + Dew Point'}
-            </h3>
-         </div>
-         
+      {/* Chart */}
+      <div className="flex-1 relative">
          {viewMode === 'hourly' ? (
-             <TemperatureChart 
-                history={data.history} 
-                duration={duration} 
+             <TemperatureChart
+                history={data.history}
+                duration={duration}
                 minTemp={tempDomain[0]}
                 maxTemp={tempDomain[1]}
                 timeMode={timeMode}
@@ -114,7 +84,7 @@ export const MarathonColumn: React.FC<MarathonColumnProps> = ({
          ) : (
              <YearlyBubbleChart
                 history={data.history}
-                duration={duration} 
+                duration={duration}
                 minTemp={tempDomain[0]}
                 maxTemp={tempDomain[1]}
                 timeMode={timeMode}
@@ -124,32 +94,36 @@ export const MarathonColumn: React.FC<MarathonColumnProps> = ({
                 raceName={data.race}
              />
          )}
-         {renderFootnote()}
       </div>
-      
-      {/* Legend/Footer */}
-      <div className="flex justify-center items-center gap-3 mt-4 h-4">
+
+      {/* Legend / footnote */}
+      <div className="mt-2 min-h-[1rem]">
         {viewMode === 'hourly' ? (
-          <>
-            <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">{minYear}</span>
-            {/* Gradient bar mimicking the Red-300 to Red-950 transition */}
-            <div className="h-1.5 w-32 rounded-full bg-gradient-to-r from-[rgb(252,165,165)] to-[rgb(69,10,10)]"></div>
-            <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">{maxYear}</span>
-          </>
+          <div className="flex items-center justify-center gap-2 font-mono text-[10px] text-stone-600">
+            <span>{minYear}</span>
+            <div className="h-1 w-24 rounded-full bg-gradient-to-r from-[#e5b8a3] to-[#43140b]"></div>
+            <span>{maxYear}</span>
+            <span className="ml-1">hover a line for the year</span>
+          </div>
         ) : (
-          <div className="flex items-center gap-4 text-[10px] text-slate-400 font-medium uppercase tracking-wider">
-             <div className="flex items-center gap-1">
-               <span className="w-2 h-2 rounded-full bg-green-500"></span> Ideal
-             </div>
-             <div className="flex items-center gap-1">
-               <span className="w-2 h-2 rounded-full bg-orange-500"></span> ~0-1% &#916;pace 
-             </div>
-             <div className="flex items-center gap-1">
-               <span className="w-2 h-2 rounded-full bg-red-500"></span> &gt;1% &#916;pace
-             </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 font-mono text-[10px] text-stone-600">
+             <span className="flex items-center gap-1.5">
+               <span className="w-2 h-2 rounded-full bg-[#2f7d4f]"></span> ideal
+             </span>
+             <span className="flex items-center gap-1.5">
+               <span className="w-2 h-2 rounded-full bg-[#d98324]"></span> up to 1% slower
+             </span>
+             <span className="flex items-center gap-1.5">
+               <span className="w-2 h-2 rounded-full bg-[#b3372c]"></span> over 1% slower
+             </span>
+          </div>
+        )}
+        {footnote && (
+          <div className="mt-1.5 text-[10px] text-stone-600 leading-tight text-center">
+            {footnote}
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };

@@ -22,6 +22,8 @@ interface YearlyBubbleChartProps {
   raceName: string;
 }
 
+const FONT = '"IBM Plex Mono", ui-monospace, monospace';
+
 export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({ 
     history, 
     duration, 
@@ -39,8 +41,8 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
   // Configuration
   const height = 300;
   const width = 400; 
-  // Increased bottom padding to fit year label + icon
-  const padding = { top: 20, right: 20, bottom: 50, left: 45 };
+  // Bottom padding fits year label + icon
+  const padding = { top: 16, right: 12, bottom: 50, left: 30 };
   
   const tempRange = maxTemp - minTemp;
   const sortedHistory = useMemo(() => [...history].sort((a, b) => a.year - b.year), [history]);
@@ -57,13 +59,10 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
 
   const getBubbleColor = (sumF: number) => {
      // Coloring purely based on Temp + Dew (Sum) in Fahrenheit
-     // < 100: Green (Ideal/Good)
-     // 100 - 120: Orange (Caution)
-     // > 120: Red (Dangerous)
-     
-     if (sumF < 100) return '#10b981'; // Green
-     if (sumF <= 120) return '#f97316'; // Orange
-     return '#ef4444'; // Red
+     // < 100: ideal / 100-120: warm / > 120: hot
+     if (sumF < 100) return '#2f7d4f';
+     if (sumF <= 120) return '#d98324';
+     return '#b3372c';
   };
 
   const getYearLabel = (year: number) => {
@@ -89,14 +88,14 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
       const pointsToCheck = relevantPoints.length > 0 ? relevantPoints : yearData.weather;
       const combinedConditions = pointsToCheck.map(p => p.conditions.toLowerCase()).join(' ');
 
-      const commonProps = { size: 16, strokeWidth: 2.5 };
+      const commonProps = { size: 14, strokeWidth: 2 };
 
-      if (combinedConditions.includes('snow')) return <CloudSnow {...commonProps} className="text-sky-400" />;
-      if (combinedConditions.includes('rain')) return <CloudRain {...commonProps} className="text-blue-500" />;
-      if (combinedConditions.includes('overcast')) return <Cloud {...commonProps} className="text-slate-500" />;
-      if (combinedConditions.includes('partially')) return <CloudSun {...commonProps} className="text-orange-400" />;
+      if (combinedConditions.includes('snow')) return <CloudSnow {...commonProps} className="text-sky-600" />;
+      if (combinedConditions.includes('rain')) return <CloudRain {...commonProps} className="text-blue-600" />;
+      if (combinedConditions.includes('overcast')) return <Cloud {...commonProps} className="text-stone-500" />;
+      if (combinedConditions.includes('partially')) return <CloudSun {...commonProps} className="text-stone-500" />;
       
-      return <Sun {...commonProps} className="text-amber-500" />;
+      return <Sun {...commonProps} className="text-amber-600" />;
   };
 
   // Generate Data Shapes (Range Bars)
@@ -201,11 +200,10 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
 
   // Determine alignment of tooltip based on year position to avoid covering the column
   const tooltipAlignment = useMemo(() => {
-    if (!hoveredYear) return 'left-2';
+    if (!hoveredYear) return 'left-0';
     const index = sortedHistory.findIndex(h => h.year === hoveredYear);
-    // If column is in the left half, position tooltip on right
-    // If column is in the right half, position tooltip on left
-    return index < sortedHistory.length / 2 ? 'right-2' : 'left-2';
+    // If column is in the left half, position tooltip on right, and vice versa
+    return index < sortedHistory.length / 2 ? 'right-0' : 'left-0';
   }, [hoveredYear, sortedHistory]);
 
   return (
@@ -245,16 +243,15 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
                     y1={getY(temp)} 
                     x2={width - padding.right} 
                     y2={getY(temp)} 
-                    stroke="#e2e8f0" 
-                    strokeDasharray="4 4" 
+                    stroke="#e7e2da" 
                     strokeWidth="1"
                 />
                 <text 
-                    x={padding.left - 8} 
+                    x={padding.left - 6} 
                     y={getY(temp)} 
-                    fill="#64748b" 
-                    fontWeight="600"
-                    fontSize="10" 
+                    fill="#57534e" 
+                    fontFamily={FONT}
+                    fontSize="9" 
                     textAnchor="end" 
                     alignmentBaseline="middle"
                 >
@@ -271,21 +268,20 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
                     y1={getY(thresholdValue)} 
                     x2={width - padding.right} 
                     y2={getY(thresholdValue)} 
-                    stroke="black" 
-                    strokeWidth="1.5" 
-                    strokeDasharray="2 2"
-                    opacity="0.3"
+                    stroke="#1c1917" 
+                    strokeWidth="1" 
+                    strokeDasharray="2 3"
+                    opacity="0.5"
                 />
                 <text 
                     x={width - padding.right} 
                     y={getY(thresholdValue) - 4} 
-                    fill="black" 
-                    fontSize="10" 
+                    fill="#57534e" 
+                    fontFamily={FONT}
+                    fontSize="9" 
                     textAnchor="end" 
-                    opacity="0.6"
-                    fontWeight="600"
                 >
-                    &gt;1% &Delta; pace
+                    &gt;1% slower
                 </text>
             </g>
         )}
@@ -294,37 +290,39 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
         {sortedHistory.map(yearData => {
             const x = getX(yearData.year);
             const icon = getWeatherIcon(yearData);
+            const isHovered = hoveredYear === yearData.year;
             return (
                 <g key={yearData.year}>
                     <text 
                         x={x} 
-                        y={height - 30} 
-                        fill="#64748b" 
-                        fontWeight="600" 
-                        fontSize="10" 
+                        y={height - 28} 
+                        fill={isHovered ? '#1c1917' : '#57534e'} 
+                        fontFamily={FONT}
+                        fontSize="9" 
                         textAnchor="middle"
                         className="cursor-default"
                     >
-                        {getYearLabel(yearData.year)}
+                        {getYearLabel(yearData.year).slice(2)}
                     </text>
                     {/* Render Icon via foreignObject */}
-                    <foreignObject x={x - 8} y={height - 24} width={16} height={16}>
+                    <foreignObject x={x - 8} y={height - 22} width={16} height={16}>
                         <div className="w-full h-full flex items-center justify-center">
                             {icon}
                         </div>
                     </foreignObject>
-                    <line 
-                        x1={x} 
-                        y1={padding.top} 
-                        x2={x} 
-                        y2={height - padding.bottom} 
-                        stroke="#f1f5f9" 
-                        strokeWidth="15" 
-                        opacity="0" 
-                    />
                 </g>
             );
         })}
+
+        {/* Baseline */}
+        <line
+            x1={padding.left}
+            y1={height - padding.bottom}
+            x2={width - padding.right}
+            y2={height - padding.bottom}
+            stroke="#d6d3d1"
+            strokeWidth="1"
+        />
 
         {/* Continuous Range Shapes */}
         {yearShapes.map((shape) => {
@@ -332,9 +330,9 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
             const yTop = getY(shape.maxVal);
             const yBottom = getY(shape.minVal);
             
-            // Ensure even single points have a visible circle height (e.g. 14px)
+            // Ensure even single points have a visible circle height
             let barHeight = yBottom - yTop;
-            const barWidth = 14;
+            const barWidth = 12;
             const minBarHeight = barWidth; 
             
             // If the range is tiny, center the pill on the value
@@ -357,9 +355,7 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
                     height={barHeight}
                     rx={barWidth / 2}
                     fill={`url(#${gradId})`}
-                    stroke="white"
-                    strokeWidth="1"
-                    className={`transition-all duration-200 ${isHovered ? 'opacity-100 drop-shadow-md' : 'opacity-90'}`}
+                    className={`transition-opacity duration-150 ${hoveredYear && !isHovered ? 'opacity-35' : 'opacity-100'}`}
                 />
             );
         })}
@@ -368,9 +364,9 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
         {years.map(year => (
              <rect
                 key={`overlay-${year}`}
-                x={getX(year) - 10}
+                x={getX(year) - 12}
                 y={padding.top}
-                width={20}
+                width={24}
                 height={height - padding.top - padding.bottom}
                 fill="transparent"
                 onMouseEnter={() => setHoveredYear(year)}
@@ -384,34 +380,34 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
       
       {/* Detailed Tooltip */}
       {tooltipData && (
-          <div className={`absolute top-2 ${tooltipAlignment} bg-white/95 backdrop-blur-sm border border-slate-200 shadow-lg rounded-lg p-3 text-xs z-10 pointer-events-none min-w-[140px] animate-in fade-in zoom-in-95 duration-100`}>
-              <div className="font-bold text-slate-800 border-b border-slate-100 pb-1 mb-2 flex justify-between items-baseline">
-                <span className="text-sm">{getYearLabel(tooltipData.year)}</span>
-                <span className="text-slate-400 font-normal text-[10px]">{tooltipData.date}</span>
+          <div className={`absolute top-0 ${tooltipAlignment} bg-paper border border-stone-300 rounded p-3 z-10 pointer-events-none min-w-[150px] shadow-sm`}>
+              <div className="flex justify-between items-baseline gap-3 border-b border-stone-200 pb-1.5 mb-2">
+                <span className="font-serif font-semibold text-sm">{getYearLabel(tooltipData.year)}</span>
+                <span className="font-mono text-[10px] text-stone-600">{tooltipData.date}</span>
               </div>
               
-              <div className="space-y-2">
+              <div className="space-y-2 font-mono text-[11px]">
                   <div>
-                      <div className="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Start</div>
-                      <div className="flex justify-between text-slate-700">
-                          <span>Temp:</span>
-                          <span className="font-mono font-bold text-indigo-600">{formatVal(tooltipData.start.temp)}°</span>
+                      <div className="text-[9px] text-stone-600 mb-0.5">START</div>
+                      <div className="flex justify-between gap-4 text-ink">
+                          <span className="text-stone-600">temp</span>
+                          <span className="tabular-nums">{formatVal(tooltipData.start.temp)}°</span>
                       </div>
-                       <div className="flex justify-between text-slate-500">
-                          <span>Dew Point:</span>
-                          <span className="font-mono">{formatVal(tooltipData.start.dew)}°</span>
+                       <div className="flex justify-between gap-4">
+                          <span className="text-stone-600">dew pt</span>
+                          <span className="tabular-nums text-stone-600">{formatVal(tooltipData.start.dew)}°</span>
                       </div>
                   </div>
                   
                   <div>
-                      <div className="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Finish (+{formatDuration(duration)}h)</div>
-                      <div className="flex justify-between text-slate-700">
-                          <span>Temp:</span>
-                          <span className="font-mono font-bold text-indigo-600">{formatVal(tooltipData.finish.temp)}°</span>
+                      <div className="text-[9px] text-stone-600 mb-0.5">FINISH +{formatDuration(duration)}</div>
+                      <div className="flex justify-between gap-4 text-ink">
+                          <span className="text-stone-600">temp</span>
+                          <span className="tabular-nums">{formatVal(tooltipData.finish.temp)}°</span>
                       </div>
-                       <div className="flex justify-between text-slate-500">
-                          <span>Dew Point:</span>
-                          <span className="font-mono">{formatVal(tooltipData.finish.dew)}°</span>
+                       <div className="flex justify-between gap-4">
+                          <span className="text-stone-600">dew pt</span>
+                          <span className="tabular-nums text-stone-600">{formatVal(tooltipData.finish.dew)}°</span>
                       </div>
                   </div>
               </div>
