@@ -9,10 +9,10 @@ export interface WeatherPoint {
 export interface HistoryYear {
   year: number;
   date: string;
-  startTimeMass: string;
-  startTimeEliteMen?: string;
-  startTimeEliteWomen?: string;
-  startTimeElite?: string;
+  startTimeMass: string | null;
+  startTimeEliteMen?: string | null;
+  startTimeEliteWomen?: string | null;
+  startTimeElite?: string | null;
   weather: WeatherPoint[];
 }
 

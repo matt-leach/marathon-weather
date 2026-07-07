@@ -10,6 +10,21 @@ export const getDecimalHour = (timeStr: string): number => {
   return h + m / 60;
 };
 
+const getEarliestStartTime = (year: HistoryYear): string | undefined => {
+  const times = [
+    year.startTimeMass,
+    year.startTimeEliteMen,
+    year.startTimeEliteWomen,
+    year.startTimeElite,
+  ].filter((t): t is string => !!t);
+
+  if (times.length === 0) return undefined;
+
+  return times.reduce((earliest, current) =>
+    getDecimalHour(current) < getDecimalHour(earliest) ? current : earliest
+  );
+};
+
 /**
  * Get the start hour for a given year based on the time mode (elite/mass).
  */
@@ -18,17 +33,24 @@ export const getStartHourForYear = (
   mode: TimeMode,
   offsetMins: number
 ): number => {
-  let timeStr = year.startTimeMass;
+  let timeStr: string | undefined;
   let offsetHours = 0;
 
   if (mode === 'eliteMen') {
-    timeStr = year.startTimeEliteMen || year.startTimeElite || year.startTimeMass;
+    timeStr = year.startTimeEliteMen || year.startTimeElite || year.startTimeMass || undefined;
   } else if (mode === 'eliteWomen') {
-    timeStr = year.startTimeEliteWomen || year.startTimeElite || year.startTimeMass;
+    timeStr = year.startTimeEliteWomen || year.startTimeElite || year.startTimeMass || undefined;
   } else {
-    // Mass start mode
-    timeStr = year.startTimeMass;
+    timeStr = year.startTimeMass || getEarliestStartTime(year);
     offsetHours = offsetMins / 60;
+  }
+
+  if (!timeStr) {
+    timeStr = getEarliestStartTime(year);
+  }
+
+  if (!timeStr) {
+    throw new Error(`No start time available for ${year.year}`);
   }
 
   return getDecimalHour(timeStr) + offsetHours;
