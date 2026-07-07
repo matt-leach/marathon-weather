@@ -75,6 +75,12 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
     return `${year}`;
   };
 
+  const getYearAxisLabel = (year: number) => {
+    const full = getYearLabel(year);
+    if (year === sortedHistory[0]?.year) return full;
+    return full.slice(2);
+  };
+
   // Logic to determine a representative weather icon for the race duration
   const getWeatherIcon = (yearData: HistoryYear) => {
       const startHour = getStartHourForYear(yearData, timeMode, massOffset);
@@ -302,7 +308,7 @@ export const YearlyBubbleChart: React.FC<YearlyBubbleChartProps> = ({
                         textAnchor="middle"
                         className="cursor-default"
                     >
-                        {getYearLabel(yearData.year).slice(2)}
+                        {getYearAxisLabel(yearData.year)}
                     </text>
                     {/* Render Icon via foreignObject */}
                     <foreignObject x={x - 8} y={height - 22} width={16} height={16}>
