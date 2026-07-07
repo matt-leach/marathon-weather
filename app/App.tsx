@@ -143,14 +143,14 @@ const App: React.FC = () => {
                  <div className="relative h-5 flex items-center">
                     <input 
                       type="range" 
-                      min="120" max="420" step="1" 
+                      min="119" max="420" step="1" 
                       value={duration * 60} 
                       onChange={(e) => setDuration(parseInt(e.target.value) / 60)}
                       className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600 border border-slate-200"
                     />
                  </div>
                  <div className="flex justify-between text-[9px] text-slate-400 font-medium uppercase tracking-wider px-0.5">
-                       <span>2h</span><span>3h</span><span>4h</span><span>5h</span><span>6h</span><span>7h</span>
+                       <span>1:59</span><span>3h</span><span>4h</span><span>5h</span><span>6h</span><span>7h</span>
                  </div>
               </div>
 
