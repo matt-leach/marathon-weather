@@ -152,9 +152,13 @@ const App: React.FC = () => {
             What's the weather like on race day?
           </h1>
           <p className="mt-3 text-stone-600 text-[15px] leading-relaxed">
-            A decade of hourly conditions at {data.length} big marathons, windowed to
-            the hours you'd actually be out on the course. Set your finish time and
-            see how each year would have treated you.
+            The weather is one of the more important factors in marathon performance, and
+            heat and humidity are usually the biggest contributors.
+            This site shows how the temperature and humidity change over the course of the race 
+            at {data.length} big marathons. 
+            <br /> 
+            <br /> 
+            Set your finish time and see how each year would have treated you.
           </p>
         </div>
 
@@ -214,8 +218,8 @@ const App: React.FC = () => {
                 value={viewMode}
                 onChange={(v) => setViewMode(v as ViewMode)}
                 options={[
-                  { value: 'yearly', label: 'Year by year' },
-                  { value: 'hourly', label: 'Hour by hour' },
+                  { value: 'yearly', label: 'Bubbles' },
+                  { value: 'hourly', label: 'Trendlines' },
                 ]}
               />
             </div>
@@ -262,22 +266,26 @@ const App: React.FC = () => {
 
             <div className="mt-4 space-y-4 text-[15px] text-stone-700 leading-relaxed">
               <p>
-                Heat is the quiet variable in marathon performance. This site shows
-                historical race-day weather for some of the world's most popular
-                marathons — not the daily average, but the conditions during the
-                hours you'd actually be running.
+                This site shows temperature and humidity data for the last 10 years at 
+                {' '}{data.length} big marathons - the current Marathon Majors as well as 
+                some select others.
               </p>
               <p>
-                Pace-impact estimates use the combined temperature + dew point
-                heuristic from{' '}
+                Heat is a critical factor in marathon performance, and while it is possible
+                to train for it, it will likely still impact performance.
+              </p>
+              <p>
+                How much the weather will impact your pace depends on a number of factors,
+                here I have used the combined temperature + dew point heuristic from{' '}
                 <a href="https://maximumperformancerunning.blogspot.com/2013/07/temperature-dew-point.html" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2 decoration-stone-400 hover:decoration-ink">
                   Mark Hadley's blog
-                </a>
-                . For a more detailed treatment of running in heat and humidity,{' '}
-                <a href="https://runningwritings.com/2025/04/heat-humidity-marathon-times.html" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2 decoration-stone-400 hover:decoration-ink">
+                </a>. I have had good results with this heuristic training in the New York summer heat.
+              </p>
+              <p>
+                For another blog about running in the heat and humidity, I like
+                {' '}<a href="https://runningwritings.com/2025/04/heat-humidity-marathon-times.html" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2 decoration-stone-400 hover:decoration-ink">
                   John Davis' write-up
-                </a>{' '}
-                is excellent.
+                </a>.
               </p>
             </div>
 
@@ -286,15 +294,15 @@ const App: React.FC = () => {
               <ul className="space-y-2.5 text-sm text-stone-700">
                 <li className="flex gap-3 items-baseline">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#2f7d4f] shrink-0 translate-y-px" />
-                  <span><span className="font-medium text-ink">Ideal</span> — temp + dew point under 100°F; no meaningful slowdown.</span>
+                  <span><span className="font-medium text-ink">Ideal</span> - temp + dew point under 100°F - no meaningful slowdown.</span>
                 </li>
                 <li className="flex gap-3 items-baseline">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#d98324] shrink-0 translate-y-px" />
-                  <span><span className="font-medium text-ink">Warm</span> — 100–120°F combined; expect up to a 1% slowdown.</span>
+                  <span><span className="font-medium text-ink">Warm</span> - between 100–120°F combined - up to a 1% slowdown.</span>
                 </li>
                 <li className="flex gap-3 items-baseline">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#b3372c] shrink-0 translate-y-px" />
-                  <span><span className="font-medium text-ink">Hot</span> — over 120°F combined; more than 1% off your pace.</span>
+                  <span><span className="font-medium text-ink">Hot</span> - over 120°F combined - more than 1% off your pace.</span>
                 </li>
               </ul>
             </div>
