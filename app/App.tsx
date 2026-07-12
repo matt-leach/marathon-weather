@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react";
 import { getSortedMarathonData } from './marathon_data';
+import { GitHubIcon } from './components/GitHubIcon';
 import { MarathonColumn } from './components/MarathonColumn';
 import { MarathonData } from './types';
 import { formatDuration, calculateMetricValue } from './utils';
@@ -136,12 +137,23 @@ const App: React.FC = () => {
           <span className="font-serif text-xl font-semibold tracking-tight pt-4">
             marathons<span className="text-stone-500">.fyi</span>
           </span>
-          <button
-            onClick={() => setIsInfoOpen(true)}
-            className="pt-4 text-sm text-stone-600 hover:text-ink underline underline-offset-4 decoration-stone-300 hover:decoration-ink transition-colors"
-          >
-            About
-          </button>
+          <div className="pt-4 flex items-center gap-4">
+            <a
+              href="https://github.com/matt-leach/marathon-weather"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-stone-600 hover:text-ink transition-colors"
+              aria-label="View source on GitHub"
+            >
+              <GitHubIcon className="w-4 h-4" />
+            </a>
+            <button
+              onClick={() => setIsInfoOpen(true)}
+              className="text-sm text-stone-600 hover:text-ink underline underline-offset-4 decoration-stone-300 hover:decoration-ink transition-colors"
+            >
+              About
+            </button>
+          </div>
         </div>
       </header>
 
@@ -271,15 +283,11 @@ const App: React.FC = () => {
                 some select others.
               </p>
               <p>
-                Heat is a critical factor in marathon performance, and while it is possible
-                to train for it, it will likely still impact performance.
-              </p>
-              <p>
                 How much the weather will impact your pace depends on a number of factors,
                 here I have used the combined temperature + dew point heuristic from{' '}
                 <a href="https://maximumperformancerunning.blogspot.com/2013/07/temperature-dew-point.html" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2 decoration-stone-400 hover:decoration-ink">
                   Mark Hadley's blog
-                </a>. I have had good results with this heuristic training in the New York summer heat.
+                </a>. I have had good results with this method training in the New York summer heat.
               </p>
               <p>
                 For another blog about running in the heat and humidity, I like
@@ -305,6 +313,11 @@ const App: React.FC = () => {
                   <span><span className="font-medium text-ink">Hot</span> - over 120°F combined - more than 1% off your pace.</span>
                 </li>
               </ul>
+            </div>
+            <div className="mt-6 pt-5 border-t border-stone-300">
+              <p>For feedback or suggestions please check out the 
+                {' '}<a href="https://github.com/matt-leach/marathon-weather" target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2 decoration-stone-400 hover:decoration-ink">GitHub</a>!
+              </p>
             </div>
           </div>
         </div>
